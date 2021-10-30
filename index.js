@@ -28,6 +28,16 @@ async function run() {
             const services = await cursor.toArray();
             res.send(services);
         });
+
+        //post api for add service
+        //post api
+        app.post('/services', async (req, res) => {
+            const service = req.body;
+            console.log('Post hitted');
+            const result = await servicesCollection.insertOne(service);
+            console.log(result);
+            res.send(result);
+        });
     }
     finally {
         //await client.close();
