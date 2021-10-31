@@ -50,7 +50,7 @@ async function run() {
         app.post('/orders', async (req, res) => {
             const orders = req.body;
             console.log('Post hitted');
-            const result = await ordersCollection.insertOne(service);
+            const result = await ordersCollection.insertOne(orders);
             console.log(result);
             res.send(result);
         });
