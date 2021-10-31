@@ -21,6 +21,7 @@ async function run() {
         console.log('Connected to database');
         const database = client.db('travelGo');
         const servicesCollection = database.collection('toursBookingServices');
+        const ordersCollection = database.collection('toursBookingOrders');
         //get api
 
         app.get('/services', async (req, res) => {
@@ -45,6 +46,14 @@ async function run() {
             const service = await servicesCollection.findOne(query);
             res.json(service);
         })
+        //post api for add orders
+        app.post('/orders', async (req, res) => {
+            const orders = req.body;
+            console.log('Post hitted');
+            const result = await ordersCollection.insertOne(service);
+            console.log(result);
+            res.send(result);
+        });
 
     }
     finally {
